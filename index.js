@@ -8,7 +8,7 @@ bot.on('ready', () =>  {
      bot.user.setActivity("t!help | © 🔱Road Rage France🔱#2987")
   });
 
-bot.login(process.env.TOKEN)
+bot.login('NDM2OTM2Mzk3Nzc4MTkwMzY3.DcJJKg.XSJXWupexO9q31n5PYHCPP_sojk')
 
 bot.on("guildMemberAdd", member => {
     const bvn = member.guild.channels.find(m => m.name === "accueil-messages");
