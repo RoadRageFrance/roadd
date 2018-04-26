@@ -135,4 +135,4 @@ if (message.content.startsWith(prefix + "kick")) {
                         console.log("create role")
                     }
                 
-})
+}})
