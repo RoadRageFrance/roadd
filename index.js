@@ -62,6 +62,7 @@ if (message.content.startsWith(prefix + "addrole") || message.content.startsWith
 if(message.content.startsWith(prefix + "removerole") || message.content.startsWith(prefix + "rr")) {
     message.channel.send("Commande actuellement indisponible...");
     console.log("removerole");
+}
 
 if (message.content.startsWith(prefix + "kick")) {
             if(!message.member.hasPermission('KICK_MEMBERS')) {
@@ -135,4 +136,4 @@ if (message.content.startsWith(prefix + "kick")) {
                         console.log("create role")
                     }
                 
-}})
+})
