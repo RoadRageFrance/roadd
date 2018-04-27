@@ -45,7 +45,7 @@ if(message.content.startsWith(prefix + "chaine")) {
     .setFooter("© 🔱Road Rage France🔱#2987")
     .setTimestamp()
     message.channel.send(embed)
-    console.log("help")
+    console.log("chaine")
     }
 
 if (message.content.startsWith(prefix + "ping")) {
