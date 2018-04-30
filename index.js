@@ -8,7 +8,7 @@ bot.on('ready', () =>  {
      bot.user.setActivity("t!help | © 🔱Road Rage France🔱#2987")
   });
 
-bot.login(process.env.TOKEN)
+bot.login('NDM5MTgyNTQ2MjM2OTk3NjMy.DcPcJQ.GVSDNwHJyexr7fH5BSSL7ZH0_lI')
 
 bot.on("guildMemberAdd", member => {
     const bvn = member.guild.channels.find(m => m.name === "accueil-messages");
@@ -58,16 +58,6 @@ if (message.content.startsWith(prefix + "ping")) {
     console.log("ping")
 }).
     catch(console.error);
-}
-
-if (message.content.startsWith(prefix + "addrole") || message.content.startsWith(prefix + "ar")) {
-    message.channel.send("Commande actuellement indisponible...");
-    console.log("addrole");
-}
-
-if(message.content.startsWith(prefix + "removerole") || message.content.startsWith(prefix + "rr")) {
-    message.channel.send("Commande actuellement indisponible...");
-    console.log("removerole");
 }
 
 if (message.content.startsWith(prefix + "kick")) {
@@ -152,5 +142,37 @@ if(message.content.startsWith(prefix + "reseaux")) {
     message.channel.send(embed)
     console.log("réseaux")
     }
+
+    if(message.content.startsWith(prefix + "removerole") || message.content.startsWith(prefix + "rr")) {
+        message.delete(message.author)
+        let memberremoverole = message.mentions.members.first()
+        if(!memberremoverole) return message.reply("Veuillez mentionner un utilisateur");
+        let namerole = message.mentions.roles.first();
+        if(!namerole) return message.reply("Veuillez mentionner un role")
+            if(!message.member.hasPermission("MANAGE_ROLES")) {
+                return message.reply("Tu n'as pas les permisions !").catch(console.error);
+            }
+            if(!message.guild.member(bot.user).hasPermission("MANAGE_ROLES")) {
+                return message.reply("Je n'ai pas les permissions !");
+            }
+            memberremoverole.removeRole(namerole)
+            return message.reply(`Le role ${namerole} a bien été enlevé a ${memberremoverole}`);
+        }
+
+        if(message.content.startsWith(prefix + "addrole") || message.content.startsWith(prefix + "ar")) {
+            message.delete(message.author)
+            let membergiverole = message.mentions.members.first()
+            if(!membergiverole) return message.reply("Veuillez mentionner un utilisateur");
+            let namerole = message.mentions.roles.first();
+            if(!namerole) return message.reply("Veuillez mentionner un role")
+                if(!message.member.hasPermission("MANAGE_ROLES")) {
+                    return message.reply("Tu n'as pas les permisions !").catch(console.error);
+                }
+                if(!message.guild.member(bot.user).hasPermission("MANAGE_ROLES")) {
+                    return message.reply("Je n'ai pas les permissions !");
+                }
+                membergiverole.addRole(namerole)
+                return message.reply(`Le role ${namerole} a bien été add a ${membergiverole}`);
+            }
                 
 })
