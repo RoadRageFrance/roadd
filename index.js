@@ -220,5 +220,6 @@ if(message.content.startsWith(prefix + "OM") || message.content.startsWith(prefi
     .setDescription("**On est en finale ! On est, on est, on est en finale !!!**")
     .setImage("https://media0.giphy.com/media/3ov9k0kGnPS4B57RQs/giphy.gif")
     message.channel.send(embed)
+    console.log("OM")
     }
 })
