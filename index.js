@@ -1,14 +1,16 @@
 const Discord = require('discord.js');
-const bot = new Discord.Client()
+const bot = new Discord.Client();
 
 var prefix = ("t!");
+var number = 0;
+var game = false;
 
 bot.on('ready', () =>  {
     console.log("Je suis connecté !")
      bot.user.setActivity("t!help | © 🔱Road Rage France🔱#2987")
   });
 
-bot.login(process.env.TOKEN)
+bot.login('NDM5MTgyNTQ2MjM2OTk3NjMy.DcPcJQ.GVSDNwHJyexr7fH5BSSL7ZH0_lI')
 
 bot.on("guildMemberAdd", member => {
     const bvn = member.guild.channels.find(m => m.name === "accueil-messages");
@@ -30,7 +32,7 @@ bot.on('message', message => {
         let embed = new Discord.RichEmbed()
         .setColor('#FE9901')
         .setAuthor("Liste des commandes", bot.user.avatarURL)
-        .addField("Road Rage Bot JR",  "__**Voici les commandes disponibles**__ :\n\n __**Légende**__ :\n\n ✅ : __Commande Disponible__\n ❌ : __Commande temporairement désactivée__\n 🚧 : __Commande en cours de développement__\n\n __t!help__ Pour la liste des commandes ✅\n\n __t!chaine__ pour avoir le lien de ma chaîne YouTube ✅\n\n__t!addrole__ ou __t!ar__ Pour ajouter une personne à un rôle ✅\n\n__t!ban__ Pour bannir un utilisateur ✅\n\n__t!kick__ Pour kicker un utilisateur ✅\n\n__t!createrole NOM DU ROLE__ ou __t!cr NOM DU ROLE__ Pour créer un rôle ✅\n\n__t!createchannel NOM DU CHANNEL__ ou __t!cc NOM DU CHANNEL__ Pour créer un channel ✅\n\n__t!removerole NOM DU ROLE PSEUDO__ ou __t!rr NOM DU ROLE PSEUDO__ Pour enlever un rôle à quelqu'un ✅\n\n__t!reseaux__ Pour avoir tous mes réseaux sociaux ✅", true)
+        .addField("Road Rage Bot JR",  "__**Voici les commandes disponibles**__ :\n\n __**Légende**__ :\n\n ✅ : __Commande Disponible__\n ❌ : __Commande temporairement désactivée__\n 🚧 : __Commande en cours de développement__\n\n __t!help__ Pour la liste des commandes ✅\n\n __t!chaine__ pour avoir le lien de ma chaîne YouTube ✅\n\n__t!addrole__ ou __t!ar__ Pour ajouter une personne à un rôle ✅\n\n__t!ban__ Pour bannir un utilisateur ✅\n\n__t!kick__ Pour kicker un utilisateur ✅\n\n__t!createrole__ ou __t!cr__ Pour créer un rôle ✅\n\n__t!createchannel__ ou __t!cc__ Pour créer un channel ✅\n\n__t!removerole__ ou __t!rr__ Pour enlever un rôle à quelqu'un ✅\n\n__t!reseaux__ Pour avoir tous mes réseaux sociaux ✅\n\n__t!justeprix__ ou __t!jp__ Pour commencer une partie du Juste Prix ✅\n\n__t!stoppartie__ ou __t!sp__ Pour arrêter une partie en cours du Juste Prix ✅", true)
         .setFooter("© 🔱Road Rage France🔱#2987")
         .setTimestamp()
         message.channel.send(embed)
@@ -141,38 +143,73 @@ if(message.content.startsWith(prefix + "reseaux")) {
     .setTimestamp()
     message.channel.send(embed)
     console.log("réseaux")
+}
+
+if(message.content.startsWith(prefix + "removerole") || message.content.startsWith(prefix + "rr")) {
+    message.delete(message.author)
+    let memberremoverole = message.mentions.members.first()
+    if(!memberremoverole) return message.reply("Veuillez mentionner un utilisateur");
+    let namerole = message.mentions.roles.first();
+    if(!namerole) return message.reply("Veuillez mentionner un role")
+        if(!message.member.hasPermission("MANAGE_ROLES")) {
+            return message.reply("Tu n'as pas les permisions !").catch(console.error);
+        }
+if(!message.guild.member(bot.user).hasPermission("MANAGE_ROLES")) {
+    return message.reply("Je n'ai pas les permissions !");
+}
+    memberremoverole.removeRole(namerole)
+        return message.reply(`Le role ${namerole} a bien été enlevé a ${memberremoverole}`);
+}
+
+if(message.content.startsWith(prefix + "addrole") || message.content.startsWith(prefix + "ar")) {
+    message.delete(message.author)
+        let membergiverole = message.mentions.members.first()
+if(!membergiverole) return message.reply("Veuillez mentionner un utilisateur");
+    let namerole = message.mentions.roles.first();
+if(!namerole) return message.reply("Veuillez mentionner un role")
+if(!message.member.hasPermission("MANAGE_ROLES")) {
+    return message.reply("Tu n'as pas les permisions !").catch(console.error);
+}
+if(!message.guild.member(bot.user).hasPermission("MANAGE_ROLES")) {
+    return message.reply("Je n'ai pas les permissions !");
+}
+    membergiverole.addRole(namerole)
+        return message.reply(`Le role ${namerole} a bien été add a ${membergiverole}`);
+}
+
+if(message.content.startsWith(prefix + "justeprix") || message.content.startsWith(prefix + "jp")) {
+    message.delete(message.author)
+    message.channel.send("**Partie lancée ! Ecrivez un nombre compris entre 1 et 5000 !**")
+    game = true;
+    number = Math.floor(Math.random() * (5000 - 0) + 0)
+    console.log(number)
+}
+
+if(message.content.startsWith(prefix + "stoppartie") || message.content.startsWith(prefix + "sp")) {
+    message.delete(message.author)
+    if(game == true){
+        message.channel.send("**Partie stoppée !**")
+    }else{
+        message.channel.send("**Il n'y a aucune partie en cours !**")
     }
 
-    if(message.content.startsWith(prefix + "removerole") || message.content.startsWith(prefix + "rr")) {
-        message.delete(message.author)
-        let memberremoverole = message.mentions.members.first()
-        if(!memberremoverole) return message.reply("Veuillez mentionner un utilisateur");
-        let namerole = message.mentions.roles.first();
-        if(!namerole) return message.reply("Veuillez mentionner un role")
-            if(!message.member.hasPermission("MANAGE_ROLES")) {
-                return message.reply("Tu n'as pas les permisions !").catch(console.error);
-            }
-            if(!message.guild.member(bot.user).hasPermission("MANAGE_ROLES")) {
-                return message.reply("Je n'ai pas les permissions !");
-            }
-            memberremoverole.removeRole(namerole)
-            return message.reply(`Le role ${namerole} a bien été enlevé a ${memberremoverole}`);
-        }
+}
 
-        if(message.content.startsWith(prefix + "addrole") || message.content.startsWith(prefix + "ar")) {
-            message.delete(message.author)
-            let membergiverole = message.mentions.members.first()
-            if(!membergiverole) return message.reply("Veuillez mentionner un utilisateur");
-            let namerole = message.mentions.roles.first();
-            if(!namerole) return message.reply("Veuillez mentionner un role")
-                if(!message.member.hasPermission("MANAGE_ROLES")) {
-                    return message.reply("Tu n'as pas les permisions !").catch(console.error);
-                }
-                if(!message.guild.member(bot.user).hasPermission("MANAGE_ROLES")) {
-                    return message.reply("Je n'ai pas les permissions !");
-                }
-                membergiverole.addRole(namerole)
-                return message.reply(`Le role ${namerole} a bien été add a ${membergiverole}`);
-            }
-                
+if(game && message.content != null){
+    if(Number.isInteger(parseInt(message.content))) {
+        if(message.content > number){
+            message.channel.send("**C'est moins !**")
+        }
+        else if(message.content < number){
+            message.channel.send("**C'est plus !**")
+        }
+        else{
+            message.channel.send("**C'est gagné !**", {
+                file: "https://cdn.journaldugeek.com/files/2014/04/Risoli-Million.gif"
+            });
+            game = false;
+        }
+    }
+}
+
 })
