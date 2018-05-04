@@ -10,7 +10,7 @@ bot.on('ready', () =>  {
      bot.user.setActivity("t!help | © 🔱Road Rage France🔱#2987")
   });
 
-bot.login(process.env.TOKEN)
+bot.login('NDM5MTgyNTQ2MjM2OTk3NjMy.DcPcJQ.GVSDNwHJyexr7fH5BSSL7ZH0_lI')
 
 bot.on("guildMemberAdd", member => {
     const bvn = member.guild.channels.find(m => m.name === "accueil-messages");
@@ -32,11 +32,11 @@ bot.on('message', message => {
         let embed = new Discord.RichEmbed()
         .setColor('#FE9901')
         .setAuthor("Liste des commandes", bot.user.avatarURL)
-        .addField("Road Rage Bot JR",  "__**Voici les commandes disponibles**__ :\n\n __**Légende**__ :\n\n ✅ : __Commande Disponible__\n ❌ : __Commande temporairement désactivée__\n 🚧 : __Commande en cours de développement__\n\n __t!help__ Pour la liste des commandes ✅\n\n __t!chaine__ pour avoir le lien de ma chaîne YouTube ✅\n\n__t!addrole__ ou __t!ar__ Pour ajouter une personne à un rôle ✅\n\n__t!ban__ Pour bannir un utilisateur ✅\n\n__t!kick__ Pour kicker un utilisateur ✅\n\n__t!createrole__ ou __t!cr__ Pour créer un rôle ✅\n\n__t!createchannel__ ou __t!cc__ Pour créer un channel ✅\n\n__t!removerole__ ou __t!rr__ Pour enlever un rôle à quelqu'un ✅\n\n__t!reseaux__ Pour avoir tous mes réseaux sociaux ✅\n\n__t!justeprix__ ou __t!jp__ Pour commencer une partie du Juste Prix ✅\n\n__t!stoppartie__ ou __t!sp__ Pour arrêter une partie en cours du Juste Prix ✅\n\n__t!OM__ ou __t!om__ Pour dire un texte de supporter de l'OM + un Gif sympa ✅", true)
+        .addField("Road Rage Bot JR",  "__**Voici les commandes disponibles**__ :\n\n __**Légende**__ :\n\n ✅ : __Commande Disponible__\n ❌ : __Commande temporairement désactivée__\n 🚧 : __Commande en cours de développement__\n\n __t!help__ Pour la liste des commandes ✅\n\n __t!chaine__ pour avoir le lien de ma chaîne YouTube ✅\n\n__t!addrole__ ou __t!ar__ Pour ajouter une personne à un rôle ✅\n\n__t!ban__ Pour bannir un utilisateur ✅\n\n__t!kick__ Pour kicker un utilisateur ✅\n\n__t!createrole__ ou __t!cr__ Pour créer un rôle ✅\n\n__t!createchannel__ ou __t!cc__ Pour créer un channel ✅\n\n__t!removerole__ ou __t!rr__ Pour enlever un rôle à quelqu'un ✅\n\n__t!reseaux__ Pour avoir tous mes réseaux sociaux ✅\n\n__t!justeprix__ ou __t!jp__ Pour commencer une partie du Juste Prix ✅\n\n__t!stoppartie__ ou __t!sp__ Pour arrêter une partie en cours du Juste Prix ✅\n\n__t!OM__ ou __t!om__ Pour envoyer un texte de supporter de l'OM + un Gif sympa ✅\n\n__t!PSG__ ou __t!psg__ Pour envoyer un texte troll à propos du PSG + une photo sympa (Allez l'OM) ✅", true)
         .setFooter("© 🔱Road Rage France🔱#2987")
         .setTimestamp()
         message.channel.send(embed)
-        console.log("chaine")
+        console.log("help")
         }
 
 if(message.content.startsWith(prefix + "chaine")) {
@@ -221,5 +221,16 @@ if(message.content.startsWith(prefix + "OM") || message.content.startsWith(prefi
     .setImage("https://media0.giphy.com/media/3ov9k0kGnPS4B57RQs/giphy.gif")
     message.channel.send(embed)
     console.log("OM")
+    }
+
+if(message.content.startsWith(prefix + "PSG") || message.content.startsWith(prefix + "psg")) {
+    message.delete(message.author)
+    let embed = new Discord.RichEmbed()
+    .setColor('#FE9901')
+    .setAuthor("Road Rage France", bot.user.avatarURL)
+    .setDescription("**6-1 C'est la champion's League PAW PAW PAW !!**")
+    .setImage("https://i.ytimg.com/vi/cXqMNWbad8c/hqdefault.jpg")
+    message.channel.send(embed)
+    console.log("psg")
     }
 })
