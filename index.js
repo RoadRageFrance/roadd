@@ -7,7 +7,7 @@ var game = false;
 
 bot.on('ready', () =>  {
     console.log("Je suis connecté !")
-     bot.user.setActivity("t!help | © 🔱Road Rage France🔱#2987")
+     bot.user.setActivity("t!help | © 🔱Road Rage France🔱#2987", {type: "WATCHING"})
   });
 
 bot.login(process.env.TOKEN)
