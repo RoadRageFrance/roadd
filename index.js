@@ -15,7 +15,7 @@ bot.login(process.env.TOKEN)
 bot.on("guildMemberAdd", member => {
     const bvn = member.guild.channels.find(m => m.name === "accueil-messages");
 if(!bvn) return;
-bvn.send(`Bienvenue sur le serveur ${member.user.username} !`)
+bvn.send(`Bienvenue sur le serveur ${member} !`)
 console.log("join")
 })
 
