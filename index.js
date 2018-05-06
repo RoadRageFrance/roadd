@@ -22,7 +22,7 @@ console.log("join")
 bot.on("guildMemberRemove", member => {
     const bye = member.guild.channels.find(m => m.name === "accueil-messages");
 if(!bye) return;
-bye.send(`${member.user.username} vient de nous quitter...`)
+bye.send(`${member} vient de nous quitter...`)
 console.log("quit")
 })
 
