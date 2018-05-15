@@ -218,7 +218,7 @@ if(message.content.startsWith(prefix + "OM") || message.content.startsWith(prefi
     .setColor('#FE9901')
     .setAuthor("Road Rage France", bot.user.avatarURL)
     .setDescription("**On est en finale ! On est, on est, on est en finale !!!**")
-    .setImage("https://media.giphy.com/media/6GEXZacmrsJTYAHsGf/giphy.gif")
+    .setImage("https://media.giphy.com/media/3ov9k0kGnPS4B57RQs/giphy.gif")
     message.channel.send(embed)
     console.log("OM")
     }
