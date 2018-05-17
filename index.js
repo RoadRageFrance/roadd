@@ -7,7 +7,7 @@ var game = false;
 
 bot.on('ready', () =>  {
     console.log("Je suis connecté !")
-     bot.user.setActivity("Allez l'OM !! t!help", {type: "WATCHING"})
+     bot.user.setActivity("t!help | © 🔱Road Rage France🔱#2987", {type: "WATCHING"})
   });
 
 bot.login(process.env.TOKEN)
@@ -217,8 +217,8 @@ if(message.content.startsWith(prefix + "OM") || message.content.startsWith(prefi
     let embed = new Discord.RichEmbed()
     .setColor('#FE9901')
     .setAuthor("Road Rage France", bot.user.avatarURL)
-    .setDescription("**On est en finale ! On est, on est, on est en finale !!!**")
-    .setImage("https://media3.giphy.com/media/3ov9k0kGnPS4B57RQs/giphy.gif")
+    .setDescription("**Allez l'OM, à jamais les premiers !**")
+    .setImage("http://www.footpack.fr/wp-content/uploads/2018/03/victoire-olympique-marseille-1993.jpg")
     message.channel.send(embed)
     console.log("OM")
     }
