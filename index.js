@@ -10,7 +10,7 @@ bot.on('ready', () =>  {
      bot.user.setActivity("t!help | © 🔱Road Rage France🔱#2987", {type: "WATCHING"})
   });
 
-bot.login(process.env.TOKEN)
+bot.login('NDM5MTgyNTQ2MjM2OTk3NjMy.DcPcJQ.GVSDNwHJyexr7fH5BSSL7ZH0_lI')
 
 bot.on("guildMemberAdd", member => {
     const bvn = member.guild.channels.find(m => m.name === "accueil-messages");
@@ -32,7 +32,29 @@ bot.on('message', message => {
         let embed = new Discord.RichEmbed()
         .setColor('#FE9901')
         .setAuthor("Liste des commandes", bot.user.avatarURL)
-        .addField("Road Rage Bot JR",  "__**Voici les commandes disponibles**__ :\n\n __**Légende**__ :\n\n ✅ : __Commande Disponible__\n ❌ : __Commande temporairement désactivée__\n 🚧 : __Commande en cours de développement__\n\n __t!help__ Pour la liste des commandes ✅\n\n __t!chaine__ pour avoir le lien de ma chaîne YouTube ✅\n\n__t!addrole__ ou __t!ar__ Pour ajouter une personne à un rôle ✅\n\n__t!ban__ Pour bannir un utilisateur ✅\n\n__t!kick__ Pour kicker un utilisateur ✅\n\n__t!createrole__ ou __t!cr__ Pour créer un rôle ✅\n\n__t!createchannel__ ou __t!cc__ Pour créer un channel ✅\n\n__t!removerole__ ou __t!rr__ Pour enlever un rôle à quelqu'un ✅\n\n__t!reseaux__ Pour avoir tous mes réseaux sociaux ✅\n\n__t!justeprix__ ou __t!jp__ Pour commencer une partie du Juste Prix ✅\n\n__t!stoppartie__ ou __t!sp__ Pour arrêter une partie en cours du Juste Prix ✅\n\n__t!OM__ ou __t!om__ Pour envoyer un texte de supporter de l'OM + un Gif sympa ✅\n\n__t!PSG__ ou __t!psg__ Pour envoyer un texte troll à propos du PSG + une photo sympa (Allez l'OM) ✅", true)
+        .setTitle("Road Rage Bot JR")
+        .setDescription("__**Voici les commandes disponibles**__ :\n" +
+        "__**Légende**__ :\n" + 
+        ":white_check_mark: : __Commande Disponible__\n" +
+        ":x: : __Commande temporairement désactivée__\n" +
+        ":construction: : __Commande en cours de développement__\n" +
+        "__t!help__ Pour la liste des commandes :white_check_mark:\n" +
+        "__t!chaine__ pour avoir le lien de ma chaîne YouTube :white_check_mark:\n" +
+        "__t!addrole__ ou __t!ar__ Pour ajouter une personne à un rôle :white_check_mark:\n" +
+        "__t!ban__ Pour bannir un utilisateur :white_check_mark:\n" +
+        "__t!kick__ Pour kicker un utilisateur :white_check_mark:\n" +
+        "__t!createrole__ ou __t!cr__ Pour créer un rôle :white_check_mark:\n" +
+        "__t!createchannel__ ou __t!cc__ Pour créer un channel :white_check_mark:\n" +
+        "__t!removerole__ ou __t!rr__ Pour enlever un rôle à quelqu'un :white_check_mark:\n" +
+        "__t!reseaux__ Pour avoir tous mes réseaux sociaux :white_check_mark:\n" +
+        "__t!justeprix__ ou __t!jp__ Pour commencer une partie du Juste Prix :white_check_mark:\n" +
+        "__t!stoppartie__ ou __t!sp__ Pour arrêter une partie en cours du Juste Prix :white_check_mark:\n" +
+        "__t!OM__ ou __t!om__ Pour envoyer un texte de supporter de l'OM + un Gif sympa :white_check_mark:\n" +
+        "__t!PSG__ ou __t!psg__ Pour envoyer un texte troll à propos du PSG + une photo sympa (Allez l'OM) :white_check_mark:\n" +
+        "__t!serveurinfos__ ou __t!si__ Pour avoir toutes les infos sur le serveur :white_check_mark:\n" +
+        "__t!botinfos__ ou __t!bi__ Pour avoir toutes les infos sur le bot :white_check_mark:\n" +
+        "__t!userinfos__ ou __t!ui__ Pour avoir toutes les infos sur un utilisateur :construction:\n"
+        )
         .setFooter("© 🔱Road Rage France🔱#2987")
         .setTimestamp()
         message.channel.send(embed)
@@ -233,4 +255,51 @@ if(message.content.startsWith(prefix + "PSG") || message.content.startsWith(pref
     message.channel.send(embed)
     console.log("psg")
     }
+
+if(message.content.startsWith(prefix + "botinfos") || message.content.startsWith(prefix + "bi")) {
+    message.delete(message.autor)
+    let embed = new Discord.RichEmbed()
+    .setAuthor(bot.user.username, bot.user.avatarURL)
+    .setColor('#FE9901')
+    .setTitle("__Informations du Bot__")
+    .addField(":crown: Créateur :", "__Road Rage France__")
+    .addField(":speech_balloon:Channels", bot.channels.size, true)
+    .addField(":abcd:Username", bot.user.username)
+    .addField(":1234:Discriminator", bot.user.discriminator, true)
+    .addField(":clock5: Uptime", Math.round(bot.uptime / 1000 * 60 * 60) + " heures, " + Math.round(bot.uptime / 1000 * 60) % 60 + " minutes et " + Math.round(bot.uptime / 1000 * 60) % 60 + " secondes", true)
+    .setTimestamp()
+    .setFooter(`Commande exécutée par ${message.author.tag}`)
+    message.channel.send(embed)
+}
+
+if(message.content.startsWith(prefix + "serveurinfos") || message.content.startsWith(prefix + "si")) {
+    message.delete(message.author)
+    let embed = new Discord.RichEmbed()
+    .setAuthor(bot.user.username, bot.user.avatarURL)
+    .setDescription("Informations du Serveur")
+    .addField("Propriétaire du serveur", message.guild.owner.user.tag)
+    .addField("Nom du serveur", message.guild.name)
+    .addField("Serveur crée le", message.guild.createdAt)
+    .addField("Nombre d'utilisateurs sur le serveur", message.guild.memberCount)
+    .addField("Nombre d'utilisateurs (hors bots)", message.guild.members.filter(member => !member.user.bot).size)
+    .addField("Nombre de bots", message.guild.members.filter(member => member.user.bot).size)
+    .addField("Nombre de salons", message.guild.channels.size)
+    .addField("Nombre de rôles", message.guild.roles.size)
+    .addField("Liste des rôles", message.guild.roles.map(r => r.name).length > 900 ? "Trop de rôles !" : message.guild.roles.map(r => r.name))
+    .setColor("#FE9901")
+    .setFooter(`Commande exécutée par ${message.author.tag}`)
+    message.channel.send(embed)
+}
+
+if(message.content.startsWith(prefix + "userinfos") || message.content.startsWith(prefix + "ui")) {
+    message.delete(message.author)
+    let embed = new Discord.RichEmbed()
+    .setColor('#FE9901')
+    .setAuthor("Road Rage Bot", bot.user.avatarURL)
+    .addField("Commande Indisponible !",  "Désolé, cette commande est actuellement indisponible, regardez le t!help pour savoir l'état de la commande", true)
+    .setFooter("© 🔱Road Rage France🔱#2987")
+    .setTimestamp()
+    message.channel.send(embed)
+}
+
 })
