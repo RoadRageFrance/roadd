@@ -10,7 +10,7 @@ bot.on('ready', () =>  {
      bot.user.setActivity("t!help | © 🔱Road Rage France🔱#2987", {type: "WATCHING"})
   });
 
-bot.login(process.env.TOKEN)
+bot.login('NDM5MTgyNTQ2MjM2OTk3NjMy.DcPcJQ.GVSDNwHJyexr7fH5BSSL7ZH0_lI')
 
 bot.on("guildMemberAdd", member => {
     const bvn = member.guild.channels.find(m => m.name === "accueil-messages");
@@ -29,33 +29,34 @@ console.log("quit")
 bot.on('message', message => {
 
     if(message.content.startsWith(prefix + "help")) {
+        message.delete(message.author)
         let embed = new Discord.RichEmbed()
         .setColor('#FE9901')
         .setAuthor("Liste des commandes", bot.user.avatarURL)
         .setTitle("Road Rage Bot JR")
-        .setDescription("__**Voici les commandes disponibles**__ :\n" +
-        "__**Légende**__ :\n" + 
+        .setDescription("__**Voici les commandes disponibles**__ :\n\n" +
+        "__**Légende**__ :\n\n" + 
         ":white_check_mark: : __Commande Disponible__\n" +
         ":x: : __Commande temporairement désactivée__\n" +
         ":construction: : __Commande en cours de développement__\n" +
-        "__t!help__ Pour la liste des commandes :white_check_mark:\n" +
-        "__t!chaine__ pour avoir le lien de ma chaîne YouTube :white_check_mark:\n" +
-        "__t!addrole__ ou __t!ar__ Pour ajouter une personne à un rôle :white_check_mark:\n" +
-        "__t!ban__ Pour bannir un utilisateur :white_check_mark:\n" +
-        "__t!kick__ Pour kicker un utilisateur :white_check_mark:\n" +
-        "__t!createrole__ ou __t!cr__ Pour créer un rôle :white_check_mark:\n" +
-        "__t!createchannel__ ou __t!cc__ Pour créer un channel :white_check_mark:\n" +
-        "__t!removerole__ ou __t!rr__ Pour enlever un rôle à quelqu'un :white_check_mark:\n" +
-        "__t!reseaux__ Pour avoir tous mes réseaux sociaux :white_check_mark:\n" +
-        "__t!justeprix__ ou __t!jp__ Pour commencer une partie du Juste Prix :white_check_mark:\n" +
-        "__t!stoppartie__ ou __t!sp__ Pour arrêter une partie en cours du Juste Prix :white_check_mark:\n" +
-        "__t!OM__ ou __t!om__ Pour envoyer un texte de supporter de l'OM + un Gif sympa :white_check_mark:\n" +
-        "__t!PSG__ ou __t!psg__ Pour envoyer un texte troll à propos du PSG + une photo sympa (Allez l'OM) :white_check_mark:\n" +
-        "__t!serveurinfos__ ou __t!si__ Pour avoir toutes les infos sur le serveur :white_check_mark:\n" +
-        "__t!botinfos__ ou __t!bi__ Pour avoir toutes les infos sur le bot :white_check_mark:\n" +
-        "__t!userinfos__ ou __t!ui__ Pour avoir toutes les infos sur un utilisateur :construction:\n"
+        "**t!help** Pour la liste des commandes :white_check_mark:\n" +
+        "**t!chaine** pour avoir le lien de ma chaîne YouTube :white_check_mark:\n" +
+        "**t!addrole** ou **t!ar** Pour ajouter une personne à un rôle :white_check_mark:\n" +
+        "**t!ban** Pour bannir un utilisateur :white_check_mark:\n" +
+        "**t!kick** Pour kicker un utilisateur :white_check_mark:\n" +
+        "**t!createrole** ou **t!cr** Pour créer un rôle :white_check_mark:\n" +
+        "**t!createchannel** ou **t!cc** Pour créer un channel :white_check_mark:\n" +
+        "**t!removerole** ou **t!rr** Pour enlever un rôle à quelqu'un :white_check_mark:\n" +
+        "**t!reseaux** Pour avoir tous mes réseaux sociaux :white_check_mark:\n" +
+        "**t!justeprix** ou **t!jp** Pour commencer une partie du Juste Prix :white_check_mark:\n" +
+        "**t!stoppartie** ou **t!sp** Pour arrêter une partie en cours du Juste Prix :white_check_mark:\n" +
+        "**t!OM** Pour envoyer un texte de supporter de l'OM + un Gif sympa :white_check_mark:\n" +
+        "**t!PSG** Pour envoyer un texte troll à propos du PSG + une photo sympa (Allez l'OM) :white_check_mark:\n" +
+        "**t!serveurinfos** ou **t!si** Pour avoir toutes les infos sur le serveur :white_check_mark:\n" +
+        "**t!botinfos** ou **t!bi** Pour avoir toutes les infos sur le bot :white_check_mark:\n" +
+        "**t!userinfos** ou **t!ui** Pour avoir toutes les infos sur un utilisateur :construction:\n"
         )
-        .setFooter("© 🔱Road Rage France🔱#2987")
+        .setFooter(`Commande exécutée par ${message.author.tag}`)
         .setTimestamp()
         message.channel.send(embed)
         console.log("help")
@@ -66,13 +67,14 @@ if(message.content.startsWith(prefix + "chaine")) {
     .setColor('#FE9901')
     .setAuthor("Ma chaine", bot.user.avatarURL)
     .addField("Pour voir ma chaine",  "[Cliquez ici](https://www.youtube.com/c/RoadRageFrance13)", true)
-    .setFooter("© 🔱Road Rage France🔱#2987")
+    .setFooter(`Commande exécutée par ${message.author.tag}`)
     .setTimestamp()
     message.channel.send(embed)
     console.log("chaine")
     }
 
 if (message.content.startsWith(prefix + "ping")) {
+    message.delete(message.author)
     var now = require('performance-now');
     var startTime = now();
     message.channel.send("**pong = calcul...**")
@@ -107,9 +109,11 @@ console.log("kick")
       
 if (message.content.startsWith(prefix + "ban")) {
 if(!message.member.hasPermission('BAN_MEMBERS')) {
+    message.delete(message.author)
     return message.reply("Tu n'as pas les permissions !").catch(console.error);
 }
 if(message.mentions.users.size === 0) {
+    message.delete(message.author)
     return message.reply("Merci de mentionner un utilisateur.").catch(console.error);
 }
 let banMember = message.guild.member(message.mentions.users.first());
@@ -117,9 +121,11 @@ if(!banMember) {
     return message.reply("Cet utilisateur est introuvable ou impossible a ban")
 }
 if(!message.guild.member(bot.user).hasPermission("BAN_MEMBERS")) {
+    message.delete(message.author)
     return message.reply("Je n'ai pas la permission BAN_MEMBERS pour faire ceci").catch(console.error);
 }
 banMember.ban().then(member => {
+    message.delete(message.author)
     message.channel.send(` :wave: ${member.user.username} a été ban :point_right:`).catch(console.error);
       
 }).catch(console.error);
@@ -161,7 +167,7 @@ if(message.content.startsWith(prefix + "reseaux")) {
     .setColor('#FE9901')
     .setAuthor("Road Rage France", bot.user.avatarURL)
     .addField("Mes réseaux sociaux",  "\n[Twitter, cliquez ici](https://twitter.com/RoadRageFrance)\n\n[Facebook, cliquez ici](https://www.facebook.com/RoadRageFrance)\n\n[Instagram, cliquez ici](https://www.instagram.com/road_rage_france/)\n", true)
-    .setFooter("© 🔱Road Rage France🔱#2987")
+    .setFooter(`Commande exécutée par ${message.author.tag}`)
     .setTimestamp()
     message.channel.send(embed)
     console.log("réseaux")
