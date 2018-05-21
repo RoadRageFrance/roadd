@@ -10,7 +10,7 @@ bot.on('ready', () =>  {
      bot.user.setActivity("t!help | © 🔱Road Rage France🔱#2987", {type: "WATCHING"})
   });
 
-bot.login(process.env.TOKEN)
+bot.login('NDM5MTgyNTQ2MjM2OTk3NjMy.DcPcJQ.GVSDNwHJyexr7fH5BSSL7ZH0_lI')
 
 bot.on("guildMemberAdd", member => {
     const bvn = member.guild.channels.find(m => m.name === "accueil-messages");
@@ -301,8 +301,31 @@ if(message.content.startsWith(prefix + "userinfos") || message.content.startsWit
     message.delete(message.author)
     let embed = new Discord.RichEmbed()
     .setColor('#FE9901')
-    .setAuthor("Road Rage Bot", bot.user.avatarURL)
+    .setAuthor("Road Rage Bot JR", bot.user.avatarURL)
     .addField("Commande Indisponible !",  "Désolé, cette commande est actuellement indisponible, regardez le t!help pour savoir l'état de la commande", true)
+    .setFooter("© 🔱Road Rage France🔱#2987")
+    .setTimestamp()
+    message.channel.send(embed)
+}
+
+if(message.content.startsWith(prefix + "règlement")) {
+    message.delete(message.author)
+    let embed = new Discord.RichEmbed()
+    .setColor('#FE9901')
+    .setAuthor("Road Rage Bot JR", bot.user.avatarURL)
+    .setDescription(":right_facing_fist:Bienvenue sur le discord Road Rage France :left_facing_fist:\n\n" +
+    ":handshake: Règles Générales:handshake:\n\n" +
+    "1 - Pas d'insultes\n\n" +
+    "2 - Pas de harcèlement ou Autres\n\n" +
+    "3 - Veuillez éviter les sujets délicats tels que la religion, la politique etc...\n\n" +
+    "4 - Pas de spam\n\n" +
+    "5 - Veuillez respecter l'ordre hiérarchique des grades (staff, admins...)\n\n" +
+    "6 - Ayez un pseudo correct\n\n" +
+    "7 - Aucune vente n'est autorisée\n\n" +
+    "8 - Le respect est de rigueur\n\n" +
+    "9 - Veuillez éviter de poster des images à caractères pornographiques ou gores etc... Sur l'accueil-messages\n\n" +
+    "10 - Après ne pas avoir respecté les règles vous aurez des avertissements écrits (ban/kick si récidive)\n\n" +
+    "Dès votre arrivée sur le serveur, l'équipe de modération considèrera que vous avez bien pris conscience des règles et que vous les avez assimilées")
     .setFooter("© 🔱Road Rage France🔱#2987")
     .setTimestamp()
     message.channel.send(embed)
