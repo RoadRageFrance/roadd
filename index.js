@@ -15,14 +15,14 @@ bot.login(process.env.TOKEN)
 bot.on("guildMemberAdd", member => {
     const bvn = member.guild.channels.find(m => m.name === "accueil-messages");
 if(!bvn) return;
-bvn.send(`Bienvenue sur le serveur ${member} !`)
+bvn.send(`Bienvenue sur le serveur ${member.author.tag} !`)
 console.log("join")
 })
 
 bot.on("guildMemberRemove", member => {
     const bye = member.guild.channels.find(m => m.name === "accueil-messages");
 if(!bye) return;
-bye.send(`${member} vient de nous quitter...`)
+bye.send(`${member.author.tag} vient de nous quitter...`)
 console.log("quit")
 })
 
