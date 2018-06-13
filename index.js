@@ -10,7 +10,7 @@ bot.on('ready', () =>  {
      bot.user.setActivity("t!help | © 🔱Road Rage France🔱#2987", {type: "WATCHING"})
   });
 
-bot.login(process.env.TOKEN)
+bot.login('NDM5MTgyNTQ2MjM2OTk3NjMy.DcPcJQ.GVSDNwHJyexr7fH5BSSL7ZH0_lI')
 
 bot.on("guildMemberAdd", member => {
     const bvn = member.guild.channels.find(m => m.name === "accueil-messages");
@@ -54,7 +54,8 @@ bot.on('message', message => {
         "**t!PSG** Pour envoyer un texte troll à propos du PSG + une photo sympa (Allez l'OM) :white_check_mark:\n" +
         "**t!serveurinfos** ou **t!si** Pour avoir toutes les infos sur le serveur :white_check_mark:\n" +
         "**t!botinfos** ou **t!bi** Pour avoir toutes les infos sur le bot :white_check_mark:\n" +
-        "**t!userinfos** ou **t!ui** Pour avoir toutes les infos sur un utilisateur :construction:\n"
+        "**t!userinfos** ou **t!ui** Pour avoir toutes les infos sur un utilisateur :construction:\n" +
+        "**t!france** ou **t!fr** Pour envoyer un texte de supporter des Bleus + une image sympa :white_check_mark:\n"
         )
         .setFooter(`Commande exécutée par ${message.author.tag}`)
         .setTimestamp()
@@ -330,5 +331,32 @@ if(message.content.startsWith(prefix + "règlement")) {
     .setTimestamp()
     message.channel.send(embed)
 }
+
+if(message.content.startsWith(prefix + "oui")) {
+    message.delete(message.author)
+        let membergiverole = message.mentions.members.first()
+if(!membergiverole) return message.reply("Veuillez mentionner un utilisateur");
+    let namerole = message.mentions.roles.first();
+if(!namerole) return message.reply("Veuillez mentionner un role")
+if(!message.member.hasPermission("MANAGE_ROLES")) {
+    return message.reply("Tu n'as pas les permisions !").catch(console.error);
+}
+if(!message.guild.member(bot.user).hasPermission("MANAGE_ROLES")) {
+    return message.reply("Je n'ai pas les permissions !");
+}
+    membergiverole.addRole(namerole)
+        return message.reply(`Le role ${namerole} a bien été add a ${membergiverole}`);
+}
+
+if(message.content.startsWith(prefix + "france") || message.content.startsWith(prefix + "fr")) {
+    message.delete(message.author)
+    let embed = new Discord.RichEmbed()
+    .setColor('#FE9901')
+    .setAuthor("Road Rage France", bot.user.avatarURL)
+    .setDescription("**Allez les Bleus ! Faites nous rêver 20 ans après !**")
+    .setImage("http://www.ohmygoal.co/content/couv/20180601_grizou-site.jpg")
+    message.channel.send(embed)
+    console.log("FR")
+    }
 
 })
