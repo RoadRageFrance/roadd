@@ -10,7 +10,7 @@ bot.on('ready', () =>  {
      bot.user.setActivity("t!help | © 🔱Road Rage France🔱#2987", {type: "WATCHING"})
   });
 
-bot.login(process.env.TOKEN)
+bot.login('NDM5MTgyNTQ2MjM2OTk3NjMy.DcPcJQ.GVSDNwHJyexr7fH5BSSL7ZH0_lI')
 
 bot.on("guildMemberAdd", member => {
     const bvn = member.guild.channels.find(m => m.name === "accueil-messages");
@@ -326,6 +326,7 @@ if(message.content.startsWith(prefix + "règlement")) {
     "8 - Le respect est de rigueur\n\n" +
     "9 - Veuillez éviter de poster des images à caractères pornographiques ou gores etc... Sur l'accueil-messages\n\n" +
     "10 - Après ne pas avoir respecté les règles vous aurez des avertissements écrits (ban/kick si récidive)\n\n" +
+    "11 - Si vous avez une réclamation à faire auprès du staff, rejoingnez le salon vocal /File D'Attente/, un membre du staff vous prendra en charge !\n\n" +
     "Dès votre arrivée sur le serveur, l'équipe de modération considèrera que vous avez bien pris conscience des règles et que vous les avez assimilées")
     .setFooter("© 🔱Road Rage France🔱#2987")
     .setTimestamp()
