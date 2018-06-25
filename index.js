@@ -234,7 +234,7 @@ if(game && message.content != null){
         }
         else{
             message.channel.send("**C'est gagné !**", {
-                file: "https://cdn.journaldugeek.com/files/2014/04/Risoli-Million.gif"
+                file: "http://forum.dequaliter.com/uploads/default/original/1X/fdc9b65f3349143d079f2ee0e96b5eaf064e8f34.gif"
             });
             game = false;
         }
