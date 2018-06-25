@@ -10,7 +10,7 @@ bot.on('ready', () =>  {
      bot.user.setActivity("t!help | © 🔱Road Rage France🔱#2987", {type: "WATCHING"})
   });
 
-bot.login(process.env.TOKEN)
+bot.login('NDM5MTgyNTQ2MjM2OTk3NjMy.DcPcJQ.GVSDNwHJyexr7fH5BSSL7ZH0_lI')
 
 bot.on("guildMemberAdd", member => {
     const bvn = member.guild.channels.find(m => m.name === "accueil-messages");
@@ -34,28 +34,28 @@ bot.on('message', message => {
         .setColor('#FE9901')
         .setAuthor("Liste des commandes", bot.user.avatarURL)
         .setTitle("Road Rage Bot JR")
-        .setDescription("__**Voici les commandes disponibles**__ :\n\n" +
-        "__**Légende**__ :\n\n" + 
-        ":white_check_mark: : __Commande Disponible__\n" +
-        ":x: : __Commande temporairement désactivée__\n" +
-        ":construction: : __Commande en cours de développement__\n" +
-        "**t!help** Pour la liste des commandes :white_check_mark:\n" +
-        "**t!chaine** pour avoir le lien de ma chaîne YouTube :white_check_mark:\n" +
-        "**t!addrole** ou **t!ar** Pour ajouter une personne à un rôle :white_check_mark:\n" +
-        "**t!ban** Pour bannir un utilisateur :white_check_mark:\n" +
-        "**t!kick** Pour kicker un utilisateur :white_check_mark:\n" +
-        "**t!createrole** ou **t!cr** Pour créer un rôle :white_check_mark:\n" +
-        "**t!createchannel** ou **t!cc** Pour créer un channel :white_check_mark:\n" +
-        "**t!removerole** ou **t!rr** Pour enlever un rôle à quelqu'un :white_check_mark:\n" +
-        "**t!reseaux** Pour avoir tous mes réseaux sociaux :white_check_mark:\n" +
-        "**t!justeprix** ou **t!jp** Pour commencer une partie du Juste Prix :white_check_mark:\n" +
-        "**t!stoppartie** ou **t!sp** Pour arrêter une partie en cours du Juste Prix :white_check_mark:\n" +
-        "**t!OM** Pour envoyer un texte de supporter de l'OM + un Gif sympa :white_check_mark:\n" +
-        "**t!PSG** Pour envoyer un texte troll à propos du PSG + une photo sympa (Allez l'OM) :white_check_mark:\n" +
-        "**t!serveurinfos** ou **t!si** Pour avoir toutes les infos sur le serveur :white_check_mark:\n" +
-        "**t!botinfos** ou **t!bi** Pour avoir toutes les infos sur le bot :white_check_mark:\n" +
-        "**t!userinfos** ou **t!ui** Pour avoir toutes les infos sur un utilisateur :construction:\n" +
-        "**t!france** ou **t!fr** Pour envoyer un texte de supporter des Bleus + une image sympa :white_check_mark:\n"
+        .setDescription("__**Voici les commandes disponibles**__ :\n\n\n" +
+        "__**Légende**__ :\n\n\n" + 
+        ":white_check_mark: : __Commande Disponible__\n\n" +
+        ":x: : __Commande temporairement désactivée__\n\n" +
+        ":construction: : __Commande en cours de développement__\n\n" +
+        "**t!help** Pour la liste des commandes :white_check_mark:\n\n" +
+        "**t!chaine** pour avoir le lien de ma chaîne YouTube :white_check_mark:\n\n" +
+        "**t!addrole** ou **t!ar** Pour ajouter une personne à un rôle :white_check_mark:\n\n" +
+        "**t!ban** Pour bannir un utilisateur :white_check_mark:\n\n" +
+        "**t!kick** Pour kicker un utilisateur :white_check_mark:\n\n" +
+        "**t!createrole** ou **t!cr** Pour créer un rôle :white_check_mark:\n\n" +
+        "**t!createchannel** ou **t!cc** Pour créer un channel :white_check_mark:\n\n" +
+        "**t!removerole** ou **t!rr** Pour enlever un rôle à quelqu'un :white_check_mark:\n\n" +
+        "**t!reseaux** Pour avoir tous mes réseaux sociaux :white_check_mark:\n\n" +
+        "**t!justeprix** ou **t!jp** Pour commencer une partie du Juste Prix :white_check_mark:\n\n" +
+        "**t!stoppartie** ou **t!sp** Pour arrêter une partie en cours du Juste Prix :white_check_mark:\n\n" +
+        "**t!OM** Pour envoyer un texte de supporter de l'OM + un Gif sympa :white_check_mark:\n\n" +
+        "**t!PSG** Pour envoyer un texte troll à propos du PSG + une photo sympa (Allez l'OM) :white_check_mark:\n\n" +
+        "**t!serveurinfos** ou **t!si** Pour avoir toutes les infos sur le serveur :white_check_mark:\n\n" +
+        "**t!botinfos** ou **t!bi** Pour avoir toutes les infos sur le bot :white_check_mark:\n\n" +
+        "**t!userinfos** ou **t!ui** Pour avoir toutes les infos sur un utilisateur :construction:\n\n" +
+        "**t!france** ou **t!fr** Pour envoyer un texte de supporter des Bleus + une image sympa :white_check_mark:\n\n"
         )
         .setFooter(`Commande exécutée par ${message.author.tag}`)
         .setTimestamp()
