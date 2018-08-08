@@ -10,19 +10,19 @@ bot.on('ready', () =>  {
      bot.user.setActivity("t!help | © 🔱Road Rage France🔱#2987", {type: "WATCHING"})
   });
 
-bot.login(process.env.TOKEN)
+bot.login('NDM5MTgyNTQ2MjM2OTk3NjMy.DcPcJQ.GVSDNwHJyexr7fH5BSSL7ZH0_lI')
 
 bot.on("guildMemberAdd", member => {
     const bvn = member.guild.channels.find(m => m.name === "accueil-messages");
 if(!bvn) return;
-bvn.send(`Bienvenue sur le serveur ${member} !`)
+bvn.send(`**Bienvenue sur le serveur Road Rage France Communauté ${member} !**`)
 console.log("join")
 })
 
 bot.on("guildMemberRemove", member => {
     const bye = member.guild.channels.find(m => m.name === "accueil-messages");
 if(!bye) return;
-bye.send(`${member} vient de nous quitter...`)
+bye.send(`**${member} vient de nous quitter...**`)
 console.log("quit")
 })
 
@@ -354,10 +354,27 @@ if(message.content.startsWith(prefix + "france") || message.content.startsWith(p
     let embed = new Discord.RichEmbed()
     .setColor('#FE9901')
     .setAuthor("Road Rage France", bot.user.avatarURL)
-    .setDescription("**Allez les Bleus ! Faites nous rêver 20 ans après !**")
-    .setImage("http://www.ohmygoal.co/content/couv/20180601_grizou-site.jpg")
+    .setDescription("**Champions mon frère !!**")
+    .setImage("https://cdn-media.rtl.fr/cache/D9IMnDZ2OneYqTf5CHxnxQ/880v587-0/online/image/2018/0715/7794129680_coupe-du-monde-2018-les-bleus-celebrent-leur-deuxieme-sacre.jpg")
     message.channel.send(embed)
     console.log("FR")
     }
+
+    if(message.content.startsWith(prefix + "règlement")) {
+        message.delete(message.author)
+        let embed = new Discord.RichEmbed()
+        .setColor('#FE9901')
+        .setAuthor("Road Rage Bot JR", bot.user.avatarURL)
+        .setDescription("🛒 **Voici la liste des articles disponibles** 🛒\n\n" +
+        "📋 **Note :** Utilisez !!credits dans le salon #commandes pour voir votre solde ! Pour recevoir 200$ par jour, utilisez !!daily toutes les 24h 📋\n\n" +
+        "**-Grade Personnalisé : 65.000$ \n\n" +
+        "**-Grade Gros Bonnet : 50.000$ \n\n" +
+        "**-Grade Fortune : 40.000$ \n\n" +
+        "**-Emoji personnalisé : 30.000$ \n\n" +
+        "**Pour effectuer un achat, veuillez contacter © 🔱Road Rage France🔱#2987 en message privé !**\n\n")
+        .setFooter("© 🔱Road Rage France🔱#2987")
+        .setTimestamp()
+        message.channel.send(embed)
+    } 
 
 })
