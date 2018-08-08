@@ -360,7 +360,7 @@ if(message.content.startsWith(prefix + "france") || message.content.startsWith(p
     console.log("FR")
     }
 
-    if(message.content.startsWith(prefix + "règlement")) {
+    if(message.content.startsWith(prefix + "shop")) {
         message.delete(message.author)
         let embed = new Discord.RichEmbed()
         .setColor('#FE9901')
