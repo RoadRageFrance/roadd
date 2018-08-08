@@ -367,10 +367,10 @@ if(message.content.startsWith(prefix + "france") || message.content.startsWith(p
         .setAuthor("Road Rage Bot JR", bot.user.avatarURL)
         .setDescription("🛒 **Voici la liste des articles disponibles** 🛒\n\n" +
         "📋 **Note :** Utilisez !!credits dans le salon #commandes pour voir votre solde ! Pour recevoir 200$ par jour, utilisez !!daily toutes les 24h 📋\n\n" +
-        "**-Grade Personnalisé : 65.000$ \n\n" +
-        "**-Grade Gros Bonnet : 50.000$ \n\n" +
-        "**-Grade Fortune : 40.000$ \n\n" +
-        "**-Emoji personnalisé : 30.000$ \n\n" +
+        "**-Grade Personnalisé : 65.000$** \n\n" +
+        "**-Grade Gros Bonnet : 50.000$** \n\n" +
+        "**-Grade Fortune : 40.000$** \n\n" +
+        "**-Emoji personnalisé : 30.000$** \n\n" +
         "**Pour effectuer un achat, veuillez contacter © 🔱Road Rage France🔱#2987 en message privé !**\n\n")
         .setFooter("© 🔱Road Rage France🔱#2987")
         .setTimestamp()
