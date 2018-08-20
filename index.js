@@ -10,7 +10,7 @@ bot.on('ready', () =>  {
      bot.user.setActivity("t!help | © 🔱Road Rage France🔱#2987", {type: "WATCHING"})
   });
 
-bot.login(process.env.TOKEN)
+bot.login('NDM5MTgyNTQ2MjM2OTk3NjMy.DcPcJQ.GVSDNwHJyexr7fH5BSSL7ZH0_lI')
 
 bot.on("guildMemberAdd", member => {
     const bvn = member.guild.channels.find(m => m.name === "accueil-messages");
@@ -378,6 +378,19 @@ if(message.content.startsWith(prefix + "france") || message.content.startsWith(p
         .setFooter("© 🔱Road Rage France🔱#2987")
         .setTimestamp()
         message.channel.send(embed)
-    } 
+    }
+
+    if(message.content.startsWith(prefix + "AFK") || message.content.startsWith(prefix + "afk")) {
+        message.delete(message.author)
+        let role = message.guild.roles.find('name', 'AFK')
+        if(message.member.roles.find('name', 'AFK')) {
+            message.member.removeRole(role)
+        message.reply("Vous n'êtes désormais plus AFK !")
+        }
+        else {
+            message.member.addRole(role)
+            message.reply("Vous êtes désormais AFK ! Faites t!afk quand vous êtes de retour !")
+        }
+    }
 
 })
