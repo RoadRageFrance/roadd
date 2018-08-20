@@ -389,7 +389,7 @@ if(message.content.startsWith(prefix + "france") || message.content.startsWith(p
         }
         else {
             message.member.addRole(role)
-            message.reply("Vous êtes désormais AFK ! Faites t!afk quand vous êtes de retour !")
+            message.reply("Vous êtes désormais AFK ! Faites **t!afk** quand vous êtes de retour !")
         }
     }
 
