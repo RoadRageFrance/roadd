@@ -6,17 +6,17 @@ var number = 0;
 var game = false;
 
 function game1(){
-    client.user.setActivity("Besoin d'aide ? " + prefix + "help");
+    bot.user.setActivity("Besoin d'aide ? " + prefix + "help");
     setTimeout(game2, 5000);
 };
 
 function game2(){
-    client.user.setActivity(`© 🔱Road Rage France🔱#2987`);
+    bot.user.setActivity(`© 🔱Road Rage France🔱#2987`);
     setTimeout(game3, 5000);
 };
 
 function game3(){
-    client.user.setActivity(`${client.guilds.array().length} servers | ${client.users.size} users`);
+    bot.user.setActivity(`${bot.guilds.array().length} servers | ${bot.users.size} users`);
     setTimeout(game1, 5000);
 };
 
