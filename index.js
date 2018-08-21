@@ -25,7 +25,7 @@ bot.on('ready', () =>  {
     setTimeout(game1, 5000)
   });
 
-bot.login(process.env.TOKEN)
+bot.login('NDM5MTgyNTQ2MjM2OTk3NjMy.Dl26fg.lrOycP_9N2OSksFxQQYe8Spkhfk')
 
 bot.on("guildMemberAdd", member => {
     const bvn = member.guild.channels.find(m => m.name === "accueil-messages");
@@ -179,6 +179,7 @@ message.guild.createRole({name: namerole,})
 }
 
 if(message.content.startsWith(prefix + "reseaux")) {
+    message.delete(message.author)
     let embed = new Discord.RichEmbed()
     .setColor('#FE9901')
     .setAuthor("Road Rage France", bot.user.avatarURL)
@@ -248,7 +249,7 @@ if(game && message.content != null){
             message.channel.send("**C'est plus !**")
         }
         else{
-            message.channel.send("**C'est gagné !**", {
+            message.channel.send("**C'est gagné ! Le nombre était " + number + " !**", {
                 file: "http://forum.dequaliter.com/uploads/default/original/1X/fdc9b65f3349143d079f2ee0e96b5eaf064e8f34.gif"
             });
             game = false;
@@ -263,6 +264,8 @@ if(message.content.startsWith(prefix + "OM") || message.content.startsWith(prefi
     .setAuthor("Road Rage France", bot.user.avatarURL)
     .setDescription("**Allez l'OM, à jamais les premiers !**")
     .setImage("http://www.footpack.fr/wp-content/uploads/2018/03/victoire-olympique-marseille-1993.jpg")
+    .setFooter(`Commande exécutée par ${message.author.tag}`)
+    .setTimestamp()
     message.channel.send(embed)
     console.log("OM")
     }
@@ -274,6 +277,8 @@ if(message.content.startsWith(prefix + "PSG") || message.content.startsWith(pref
     .setAuthor("Road Rage France", bot.user.avatarURL)
     .setDescription("**6-1 C'est la champion's League PAW PAW PAW !!**")
     .setImage("https://i.ytimg.com/vi/cXqMNWbad8c/hqdefault.jpg")
+    .setFooter(`Commande exécutée par ${message.author.tag}`
+    .setTimestamp())
     message.channel.send(embed)
     console.log("psg")
     }
@@ -310,16 +315,6 @@ if(message.content.startsWith(prefix + "serveurinfos") || message.content.starts
     .addField("Liste des rôles", message.guild.roles.map(r => r.name).length > 900 ? "Trop de rôles !" : message.guild.roles.map(r => r.name))
     .setColor("#FE9901")
     .setFooter(`Commande exécutée par ${message.author.tag}`)
-    message.channel.send(embed)
-}
-
-if(message.content.startsWith(prefix + "userinfos") || message.content.startsWith(prefix + "ui")) {
-    message.delete(message.author)
-    let embed = new Discord.RichEmbed()
-    .setColor('#FE9901')
-    .setAuthor("Road Rage Bot JR", bot.user.avatarURL)
-    .addField("Commande Indisponible !",  "Désolé, cette commande est actuellement indisponible, regardez le t!help pour savoir l'état de la commande", true)
-    .setFooter("© 🔱Road Rage France🔱#2987")
     .setTimestamp()
     message.channel.send(embed)
 }
@@ -351,22 +346,6 @@ if(message.content.startsWith(prefix + "règlement")) {
     message.channel.send(embed)
 }
 
-if(message.content.startsWith(prefix + "oui")) {
-    message.delete(message.author)
-        let membergiverole = message.mentions.members.first()
-if(!membergiverole) return message.reply("Veuillez mentionner un utilisateur");
-    let namerole = message.mentions.roles.first();
-if(!namerole) return message.reply("Veuillez mentionner un role")
-if(!message.member.hasPermission("MANAGE_ROLES")) {
-    return message.reply("Tu n'as pas les permisions !").catch(console.error);
-}
-if(!message.guild.member(bot.user).hasPermission("MANAGE_ROLES")) {
-    return message.reply("Je n'ai pas les permissions !");
-}
-    membergiverole.addRole(namerole)
-        return message.reply(`Le role ${namerole} a bien été add a ${membergiverole}`);
-}
-
 if(message.content.startsWith(prefix + "france") || message.content.startsWith(prefix + "fr")) {
     message.delete(message.author)
     let embed = new Discord.RichEmbed()
@@ -374,6 +353,7 @@ if(message.content.startsWith(prefix + "france") || message.content.startsWith(p
     .setAuthor("Road Rage France", bot.user.avatarURL)
     .setDescription("**Champions mon frère !!**")
     .setImage("https://cdn-media.rtl.fr/cache/D9IMnDZ2OneYqTf5CHxnxQ/880v587-0/online/image/2018/0715/7794129680_coupe-du-monde-2018-les-bleus-celebrent-leur-deuxieme-sacre.jpg")
+    .setFooter(`Commande exécutée par ${message.author.tag}`)
     message.channel.send(embed)
     console.log("FR")
     }
