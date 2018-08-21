@@ -11,12 +11,12 @@ function game1(){
 };
 
 function game2(){
-    bot.user.setActivity(`© 🔱Road Rage France🔱#2987`);
+    bot.user.setActivity(`© 🔱Road Rage France🔱`);
     setTimeout(game3, 5000);
 };
 
 function game3(){
-    bot.user.setActivity(`${bot.guilds.array().length} servers | ${bot.users.size} users`);
+    bot.user.setActivity(`${bot.guilds.array().length} serveurs | ${bot.users.size} utilisateurs`);
     setTimeout(game1, 5000);
 };
 
@@ -25,7 +25,7 @@ bot.on('ready', () =>  {
     setTimeout(game1, 5000)
   });
 
-bot.login(process.env.TOKEN)
+bot.login('NDM5MTgyNTQ2MjM2OTk3NjMy.Dl26fg.lrOycP_9N2OSksFxQQYe8Spkhfk')
 
 bot.on("guildMemberAdd", member => {
     const bvn = member.guild.channels.find(m => m.name === "accueil-messages");
