@@ -25,7 +25,7 @@ bot.on('ready', () =>  {
     setTimeout(game1, 5000)
   });
 
-bot.login(process.env.TOKEN)
+bot.login('NDM5MTgyNTQ2MjM2OTk3NjMy.Dl26fg.lrOycP_9N2OSksFxQQYe8Spkhfk')
 
 bot.on("guildMemberAdd", member => {
     const bvn = member.guild.channels.find(m => m.name === "accueil-messages");
@@ -69,8 +69,11 @@ bot.on('message', message => {
         "**t!PSG** Pour envoyer un texte troll à propos du PSG + une photo sympa (Allez l'OM) :white_check_mark:\n\n" +
         "**t!serveurinfos** ou **t!si** Pour avoir toutes les infos sur le serveur :white_check_mark:\n\n" +
         "**t!botinfos** ou **t!bi** Pour avoir toutes les infos sur le bot :white_check_mark:\n\n" +
-        "**t!userinfos** ou **t!ui** Pour avoir toutes les infos sur un utilisateur :construction:\n\n" +
-        "**t!france** ou **t!fr** Pour envoyer un texte de supporter des Bleus + une image sympa :white_check_mark:\n\n"
+        "**t!userinfos** ou **t!ui** Pour avoir toutes les infos sur un utilisateur :white_ceck_mark:\n\n" +
+        "**t!france** ou **t!fr** Pour envoyer un texte de supporter des Bleus + une image sympa :white_check_mark:\n\n" +
+        "**t!afk** Pour signaler aux autres membres que vous êtes absents pour une courte durée :white_check_mark:\n\n" +
+        "**t!amende** Pour donner une amende à quelqu'un (Admins uniquement) :white_check_mark:\n\n" +
+        "**t!purge** Pour supprimer des messages (de 2 à 100 (Admins uniquement))"
         )
         .setFooter(`Commande exécutée par ${message.author.tag}`)
         .setTimestamp()
@@ -79,6 +82,7 @@ bot.on('message', message => {
         }
 
 if(message.content.startsWith(prefix + "chaine")) {
+    message.delete(message.author)
     let embed = new Discord.RichEmbed()
     .setColor('#FE9901')
     .setAuthor("Ma chaine", bot.user.avatarURL)
@@ -103,6 +107,7 @@ if (message.content.startsWith(prefix + "ping")) {
 }
 
 if (message.content.startsWith(prefix + "kick")) {
+    message.delete(message.author)
 if(!message.member.hasPermission('KICK_MEMBERS')) {
     return message.reply("Tu n'as pas les permissions !").catch(console.error);
 }
@@ -124,6 +129,7 @@ console.log("kick")
 }
       
 if (message.content.startsWith(prefix + "ban")) {
+    message.delete(message.author)
 if(!message.member.hasPermission('BAN_MEMBERS')) {
     message.delete(message.author)
     return message.reply("Tu n'as pas les permissions !").catch(console.error);
@@ -319,6 +325,73 @@ if(message.content.startsWith(prefix + "serveurinfos") || message.content.starts
     message.channel.send(embed)
 }
 
+if (message.content.startsWith(prefix + "userinfo") || message.content.startsWith(prefix + "ui")){
+    let user = message.mentions.users.first() ? message.mentions.users.first() : message.author
+let member = message.guild.member(user);
+let roles = [];
+if (member.roles.size > 0) {
+member.roles.forEach(r => {
+    if(
+!r.name.includes("everyone")
+)
+{
+    roles.push(r.name);
+}
+})
+} else {
+roles = "no";
+}
+let ttt = (member.roles.size > 0) ? roles.length : "0";
+let wato = (roles.length > 0) ? roles.join(", ") : "None";
+let game = (!!user.presence && user.presence !== null && user.presence.game !== null && user.presence.game.name !== null) ? user.presence.game.name : "Nothing"
+let embed = {
+author: {
+    name: user.username,
+    icon_url: (user.avatarURL !== null) ? user.avatarURL : "https://maxcdn.icons8.com/Share/icon/Logos//discord_logo1600.png"
+},
+color: 0xC3FE01,
+thumbnail: {
+    url: (user.avatarURL !== null) ? user.avatarURL : "https://maxcdn.icons8.com/Share/icon/Logos//discord_logo1600.png"
+},
+fields: [{
+    name: "Utilisateur",
+    value: user.username + "#" + user.discriminator,
+    inline: true
+}, {
+    name: "ID",
+    value: user.id,
+    inline: true
+}, {
+    name: "Pseudo",
+    value: (member.nickname !== null) ? member.nickname : user.username,
+    inline: true
+}, {
+    name: "Jeu",
+    value: "Joue a : " + game,
+    inline: true
+}, {
+    name: "Statut",
+    value: (user.presence !== null && user.presence.status !== null) ? user.presence.status : "Déconnecté",
+    inline: true
+}, {
+    name: "Rejoins Le",
+    value: member.joinedAt.toString(),
+    inline: true
+}, {
+    name: "Compte Crée Le",
+    value: user.createdAt,
+    inline: true
+}, {
+    name: "Roles (" + ttt + ")",
+    value: wato,
+    inline: true
+}]
+}
+message.channel.send("", {
+embed
+});
+}
+
 if(message.content.startsWith(prefix + "règlement")) {
     message.delete(message.author)
     let embed = new Discord.RichEmbed()
@@ -387,4 +460,50 @@ if(message.content.startsWith(prefix + "france") || message.content.startsWith(p
             message.reply("Vous êtes désormais AFK ! Faites **t!afk** quand vous êtes de retour !")
         }
     }
+
+    if(message.content.startsWith(prefix + "amende")) {
+        if(message.guild.member(message.author).roles.find("name", "Admins")){
+            let args = message.content.split(" ").slice(1);
+            let ThingToEcho = args.join(" ")
+            var sondage_embed = new Discord.RichEmbed()
+                .setDescription("Amende\n")
+                .addField(ThingToEcho + "\n", "Amande payée ? Répondre avec :white_check_mark: si c'est le cas ou avec :x: si ça ne l'est pas !\n")
+                .setColor("#FE9901")
+                .setTimestamp()
+                message.guild.channels.find("name", "amendes").send(sondage_embed)
+            .then(function (message) {
+                message.react("✅")
+                message.react("❌")
+            }).catch(function() {
+            });
+    
+            message.delete()
+        }else{
+            return message.channel.send(" Désolé tu n'as pas la permission de donner des amendes !")
+        }
+    }
+
+if(message.content.startsWith(prefix + "purge")){
+    let myrole = message.guild.member(bot.user).hasPermission("MANAGE_MESSAGES");
+    let yourole = message.guild.member(message.author).hasPermission("MANAGE_MESSAGES");
+
+    if (!myrole) {
+        return message.channel.send(":no_entry:**Je n'ai pas les permissions nécessaires pour effacer un/des message(s)**");
+    }
+
+    if (!yourole) {
+        return message.channel.send(":no_entry:**Vous n'avez pas les permissions nécessaires**");
+    }
+
+    var suppression = message.content.substr(8);
+    if (suppression < 2 || suppression > 101) {
+        return message.reply(":warning:**La valeur que vous avez entré est invalide, merci de choisir une valeur comprise entre 2 et 100**");
+    }
+    message.channel.bulkDelete(suppression, true).then(ok => {
+        message.reply("**Suppression de " + "" + suppression + "" + " messages**")
+        .then(message => setTimeout(function(){message.delete()}, 1000))
+        .catch(err => console.log(err));
+    console.log("Purge")
+})
+}
 })
