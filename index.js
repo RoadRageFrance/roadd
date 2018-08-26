@@ -7,7 +7,7 @@ bot.on('ready', () =>  {
     console.log("Je suis connecté !")
   });
 
-bot.login('NDgyMzQxNDMwMTI4NDEwNjQ0.DmD1Xw.Pz5mzV2cIAvX9QJxqk1giy748MI')
+bot.login(process.env.TOKEN)
 
 bot.on("guildMemberAdd", member => {
     const bvn = member.guild.channels.find(m => m.name === "accueil-messages");
