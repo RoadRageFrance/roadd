@@ -25,14 +25,38 @@ bot.on('ready', () =>  {
     setTimeout(game1, 5000)
   });
 
-bot.login(process.env.TOKEN)
+bot.login('NDM5MTgyNTQ2MjM2OTk3NjMy.Dl26fg.lrOycP_9N2OSksFxQQYe8Spkhfk')
 
-bot.on("guildMemberAdd", member => {
-    const bvn = member.guild.channels.find(m => m.name === "accueil-messages");
-if(!bvn) return;
-bvn.send(`**Bienvenue sur le serveur Road Rage France Communauté ${member} !**`)
-console.log("join")
+
+
+bot.on("roleUpdate", (oldName, newName) => {
+    const logs = newName.guild.channels.find(m => m.name === "logs"); 
+
+    if (!logs) return; 
+    
+    const embed = new Discord.RichEmbed()
+    
+    .setColor("#FE6F01")
+    .setAuthor(bot.user.tag, bot.user.avatarURL)
+    .setTitle("Un role a été Update ! :white_check_mark:") 
+    .addField("__Nom avant :__\n", `**${oldName.name}**`, true)
+    .addField("__Nom après :__\n", `**${newName.name}**`, true)
+    .setFooter(`ID : ${newName.id}`) 
+    .setTimestamp() 
+logs.send({embed}) 
+
 })
+
+    bot.on("raw", packet => {
+        if(packet.t === "MESSAGE_REACTION_ADD"){
+            if(packet.d.message_id === "483736712678473741"){
+                if(packet.d.emoji.name === "smile"){
+                    bot.guilds.get("407241563111030794").member(packet.d.user_id).addRole("483705074246221864");
+                }
+            }
+        }
+        
+    })
 
 bot.on("guildMemberRemove", member => {
     const bye = member.guild.channels.find(m => m.name === "accueil-messages");
@@ -43,7 +67,34 @@ console.log("quit")
 
 bot.on('message', message => {
 
+    if(message.content.startsWith(prefix + "bvn")) {
+        let embed = new Discord.RichEmbed() 
+    
+            .setDescription("Bienvenue sur le serveur **Road Rage France Communauté !**") 
+    
+            .addField("__Es-tu un abonné ?__", "Répondre avec :white_check_mark: : (oui) ou :x:(non)") 
+    
+            .setColor("#FE9901") 
+    
+            .setTimestamp() 
+    
+            .setFooter(`Bienvenue sur **${message.guild.name}** | © 🔱Road Rage France🔱#2987`) 
+    
+        message.guild.channels.find("name", "bienvenue").send(embed) 
+    
+        .then(function (message) { 
+    
+            message.react("✅") 
+    
+            message.react("❌") 
+    
+        }).catch(function() { 
+    
+        });
+        }
+
     if(message.content.startsWith(prefix + "help")) {
+  
         message.delete(message.author)
         let embed = new Discord.RichEmbed()
         .setColor('#FE9901')
@@ -412,6 +463,7 @@ if(message.content.startsWith(prefix + "règlement")) {
     "11 - Si vous avez une réclamation à faire auprès du staff, rejoingnez le salon vocal /File D'Attente/, un membre du staff vous prendra en charge !\n\n" +
     "12 - Il est interdit d'effectuer la moindre commande dans un salon public autre que le salon /commandes/ prévu à cet effet !\n\n" +
     "13 - Il est interdit d'effectuer la moindre pub dans un salon public autre que le salon /pub/ prévu à cet effet !\n\n" +
+    "14 - Il est interdit d'ajouter une réaction dans le salon 'amendes' (sauf pour la personne qui a donner l'amende)" +
     "Dès votre arrivée sur le serveur, l'équipe de modération considèrera que vous avez bien pris conscience des règles et que vous les avez assimilées\n" +
     " ")
     .setFooter("© 🔱Road Rage France🔱#2987")
