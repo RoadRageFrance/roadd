@@ -25,38 +25,14 @@ bot.on('ready', () =>  {
     setTimeout(game1, 5000)
   });
 
-bot.login(process.env.TOKEN)
+bot.login('NDM5MTgyNTQ2MjM2OTk3NjMy.Dl26fg.lrOycP_9N2OSksFxQQYe8Spkhfk')
 
-
-
-bot.on("roleUpdate", (oldName, newName) => {
-    const logs = newName.guild.channels.find(m => m.name === "logs"); 
-
-    if (!logs) return; 
-    
-    const embed = new Discord.RichEmbed()
-    
-    .setColor("#FE6F01")
-    .setAuthor(bot.user.tag, bot.user.avatarURL)
-    .setTitle("Un role a été Update ! :white_check_mark:") 
-    .addField("__Nom avant :__\n", `**${oldName.name}**`, true)
-    .addField("__Nom après :__\n", `**${newName.name}**`, true)
-    .setFooter(`ID : ${newName.id}`) 
-    .setTimestamp() 
-logs.send({embed}) 
-
+    bot.on("guildMemberAdd", member => {
+        const bvn = member.guild.channels.find(m => m.name === "accueil-messages");
+if(!bvn) return;
+bvn.send(`**Bienvenue sur le serveur Road Rage France Communauté ${member} !**`)
+console.log("quit")
 })
-
-    bot.on("raw", packet => {
-        if(packet.t === "MESSAGE_REACTION_ADD"){
-            if(packet.d.message_id === "483736712678473741"){
-                if(packet.d.emoji.name === "smile"){
-                    bot.guilds.get("407241563111030794").member(packet.d.user_id).addRole("483705074246221864");
-                }
-            }
-        }
-        
-    })
 
 bot.on("guildMemberRemove", member => {
     const bye = member.guild.channels.find(m => m.name === "accueil-messages");
