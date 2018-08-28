@@ -25,7 +25,7 @@ bot.on('ready', () =>  {
     setTimeout(game1, 5000)
   });
 
-bot.login('NDM5MTgyNTQ2MjM2OTk3NjMy.Dl26fg.lrOycP_9N2OSksFxQQYe8Spkhfk')
+bot.login(process.env.TOKEN)
 
 
 
