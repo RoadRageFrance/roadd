@@ -25,7 +25,7 @@ bot.on('ready', () =>  {
     setTimeout(game1, 5000)
   });
 
-bot.login(process.env.TOKEN)
+bot.login('NDM5MTgyNTQ2MjM2OTk3NjMy.Dl26fg.lrOycP_9N2OSksFxQQYe8Spkhfk')
 
     bot.on("guildMemberAdd", member => {
         const bvn = member.guild.channels.find(m => m.name === "accueil-messages");
@@ -439,7 +439,7 @@ if(message.content.startsWith(prefix + "règlement")) {
     "11 - Si vous avez une réclamation à faire auprès du staff, rejoingnez le salon vocal /File D'Attente/, un membre du staff vous prendra en charge !\n\n" +
     "12 - Il est interdit d'effectuer la moindre commande dans un salon public autre que le salon /commandes/ prévu à cet effet !\n\n" +
     "13 - Il est interdit d'effectuer la moindre pub dans un salon public autre que le salon /pub/ prévu à cet effet !\n\n" +
-    "14 - Il est interdit d'ajouter une réaction dans le salon 'amendes' (sauf pour la personne qui a donner l'amende)" +
+    "14 - Il est interdit d'ajouter une réaction dans le salon 'amendes' (sauf pour la personne qui a donner l'amende)\n\n" +
     "Dès votre arrivée sur le serveur, l'équipe de modération considèrera que vous avez bien pris conscience des règles et que vous les avez assimilées\n" +
     " ")
     .setFooter("© 🔱Road Rage France🔱#2987")
