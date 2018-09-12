@@ -25,7 +25,7 @@ bot.on('ready', () =>  {
     setTimeout(game1, 5000)
   });
 
-bot.login(process.env.TOKEN)
+bot.login('NDM5MTgyNTQ2MjM2OTk3NjMy.Dl26fg.lrOycP_9N2OSksFxQQYe8Spkhfk')
 
     bot.on("guildMemberAdd", member => {
         const bvn = member.guild.channels.find(m => m.name === "accueil-messages");
@@ -37,7 +37,7 @@ console.log("quit")
 bot.on("guildMemberRemove", member => {
     const bye = member.guild.channels.find(m => m.name === "accueil-messages");
 if(!bye) return;
-bye.send(`**${member} vient de nous quitter...**`)
+bye.send(`**${member.tag} vient de nous quitter...**`)
 console.log("quit")
 })
 
@@ -481,24 +481,49 @@ if(message.content.startsWith(prefix + "france") || message.content.startsWith(p
         let role = message.guild.roles.find('name', 'AFK')
         if(message.member.roles.find('name', 'AFK')) {
             message.member.removeRole(role)
-        message.reply("Vous n'êtes désormais plus AFK !")
+        message.reply("Vous n'êtes désormais plus AFK ! ✅")
         }
         else {
             message.member.addRole(role)
-            message.reply("Vous êtes désormais AFK ! Faites **t!afk** quand vous êtes de retour !")
+            message.reply("Vous êtes désormais AFK ⏳ ! Faites **t!afk** quand vous êtes de retour !")
         }
     }
 
     if(message.content.startsWith(prefix + "amende")) {
         if(message.guild.member(message.author).roles.find("name", "Admins")){
-            let args = message.content.split(" ").slice(1);
-            let ThingToEcho = args.join(" ")
+    
+        
+    
+    let channelsend = message.guild.channels.find("name", "amendes")
+    
+    if(!channelsend) {
+        return message.reply("Veuillez exécuter la commande dans le channel #amendes")
+            .then(message => setTimeout(function(){message.delete()}, 5000)) 
+            .catch(err => console.log(err)); 
+    }
+    
+    let user = message.mentions.users.first();
+    let args = message.content.substr(30);
+    
+    
+    if(!user) {
+        return message.reply("Veuillez mentionner une personne !")
+            .then(message => setTimeout(function(){message.delete()}, 5000)) 
+            .catch(err => console.log(err));
+    }
+    
+    if(!args) {
+        return message.reply("Veuillez fournir une raison")
+            .then(message => setTimeout(function(){message.delete()}, 5000)) 
+            .catch(err => console.log(err)); 
+    }
+    
             var sondage_embed = new Discord.RichEmbed()
                 .setDescription("Amende\n")
-                .addField(ThingToEcho + "\n", "Amande payée ? Répondre avec :white_check_mark: si c'est le cas ou avec :x: si ça ne l'est pas !\n")
+                .addField(user.tag + "\n __Raison :__ " + args, "Amande payée ? Répondre avec :white_check_mark: si c'est le cas ou avec :x: si ça ne l'est pas !\n")
                 .setColor("#FE9901")
                 .setTimestamp()
-                message.guild.channels.find("name", "amendes").send(sondage_embed)
+                channelsend.send(sondage_embed)
             .then(function (message) {
                 message.react("✅")
                 message.react("❌")
@@ -508,8 +533,33 @@ if(message.content.startsWith(prefix + "france") || message.content.startsWith(p
             message.delete()
         }else{
             return message.channel.send(" Désolé tu n'as pas la permission de donner des amendes !")
+            .then(message => setTimeout(function(){message.delete()}, 5000)) 
+            .catch(err => console.log(err)); 
         }
+        console.log("Amende")
     }
+    if(message.content.startsWith(prefix + "amende")) {
+        if (message.channel.type === "dm") return;
+    
+        let user = message.mentions.users.first();
+    
+        if(!user) return;
+    
+        const ua = message.author;
+    
+        let mp = user
+        
+        var embed = new Discord.RichEmbed()
+            .setAuthor(user.tag, user.avatarURL)
+            .setDescription("Amende\n")
+            .setColor("#FE9901")
+            .addBlankField()
+            .addField(`Bonjour ${user.tag}, une amende vous a été attribuée sur le serveur Road Rage France Communauté.`, `Veuillez vous rendre dans le channel <#481512298859462656> pour cocher la réaction :white_check_mark: si vous avez payé, ou sinon envoyez un message aux personnes ayant le rôle **🔱 EL PADRE 🔱** ou **Chefs-Staff**`)
+            .addField("__Rappel :__", "Pour payer l'amende, exécutez la commande `!!credits @🔱Road Rage France🔱#2987 {PRIX}`, le bot vous répondra qu'il faut entrer un numéro a quatre chiffres en guise de confirmation de paiment, vous n'aurez plus qu'à l'entrer' et l'amende sera payée !")
+            .setTimestamp()
+            .setFooter(`Utilisateur qui vous a mis l'amende : ${ua.tag}`)
+            user.send(embed)
+      }
 
 if(message.content.startsWith(prefix + "purge")){
     let myrole = message.guild.member(bot.user).hasPermission("MANAGE_MESSAGES");
