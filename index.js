@@ -31,7 +31,7 @@ bot.login(process.env.TOKEN)
         const bvn = member.guild.channels.find(m => m.name === "accueil-messages");
 if(!bvn) return;
 bvn.send(`**Bienvenue sur le serveur Road Rage France Communauté ${member} !**`)
-console.log("quit")
+console.log("join")
 })
 
 bot.on("guildMemberRemove", member => {
