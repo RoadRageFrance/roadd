@@ -25,7 +25,7 @@ bot.on('ready', () =>  {
     setTimeout(game1, 5000)
   });
 
-bot.login(process.env.TOKEN)
+bot.login('NDM5MTgyNTQ2MjM2OTk3NjMy.Dl26fg.lrOycP_9N2OSksFxQQYe8Spkhfk')
 
     bot.on("guildMemberAdd", member => {
         const bvn = member.guild.channels.find(m => m.name === "accueil-messages");
@@ -442,7 +442,7 @@ if(message.content.startsWith(prefix + "règlement")) {
     "14 - Il est interdit d'ajouter une réaction dans le salon 'amendes' (sauf pour la personne qui a donner l'amende)\n\n" +
     "Dès votre arrivée sur le serveur, l'équipe de modération considèrera que vous avez bien pris conscience des règles et que vous les avez assimilées\n" +
     " ")
-    .setFooter("© 🔱Road Rage France🔱#2987")
+    .setFooter("Réglèment mis à jour : ")
     .setTimestamp()
     message.channel.send(embed)
 }
