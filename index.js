@@ -442,7 +442,7 @@ if(message.content.startsWith(prefix + "règlement")) {
     "14 - Il est interdit d'ajouter une réaction dans le salon 'amendes' (sauf pour la personne qui a donner l'amende)\n\n" +
     "Dès votre arrivée sur le serveur, l'équipe de modération considèrera que vous avez bien pris conscience des règles et que vous les avez assimilées\n" +
     " ")
-    .setFooter("Réglèment mis à jour : ")
+    .setFooter("Règlement mis à jour : ")
     .setTimestamp()
     message.channel.send(embed)
 }
