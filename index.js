@@ -25,7 +25,7 @@ bot.on('ready', () =>  {
     setTimeout(game1, 5000)
   });
 
-bot.login(process.env.TOKEN)
+bot.login('NDM5MTgyNTQ2MjM2OTk3NjMy.Dl26fg.lrOycP_9N2OSksFxQQYe8Spkhfk')
 
     bot.on("guildMemberAdd", member => {
         const bvn = member.guild.channels.find(m => m.name === "accueil-messages");
@@ -37,7 +37,7 @@ console.log("join")
 bot.on("guildMemberRemove", member => {
     const bye = member.guild.channels.find(m => m.name === "accueil-messages");
 if(!bye) return;
-bye.send(`**${member.tag} vient de nous quitter...**`)
+bye.send(`**${member.user.tag} vient de nous quitter...**`)
 console.log("quit")
 })
 
